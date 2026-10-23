@@ -31,52 +31,55 @@ export default function Navbar() {
   const isActive = (href: string) => router.asPath.startsWith(href);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        solid ? "bg-forest-950/90 py-3 shadow-lg shadow-black/10 backdrop-blur-xl" : "py-5"
-      }`}
-    >
-      <div className="container-x flex items-center justify-between gap-6">
-        <Logo light />
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          solid ? "bg-forest-950/90 py-3 shadow-lg shadow-black/10 backdrop-blur-xl" : "py-5"
+        }`}
+      >
+        <div className="container-x flex items-center justify-between gap-6">
+          <Logo light />
 
-        <nav aria-label="Main" className="hidden xl:block">
-          <ul className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block rounded-full px-4 py-2 text-[13px] font-medium transition ${
-                    isActive(item.href) ? "bg-white text-forest-950" : "text-white/80 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav aria-label="Main" className="hidden xl:block">
+            <ul className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`block rounded-full px-4 py-2 text-[13px] font-medium transition ${
+                      isActive(item.href) ? "bg-white text-forest-950" : "text-white/80 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="flex items-center gap-3">
-          <Link href="/contact/" className="btn-primary hidden !py-2.5 sm:inline-flex">
-            Contact <ArrowUpRight className="size-4" />
-          </Link>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="grid size-11 place-items-center rounded-full border border-white/20 text-white xl:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+          <div className="flex items-center gap-3">
+            <Link href="/contact/" className="btn-primary hidden !py-2.5 sm:inline-flex">
+              Contact <ArrowUpRight className="size-4" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="grid size-11 place-items-center rounded-full border border-white/20 text-white xl:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+            >
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu – kept outside <header>: its backdrop-blur would otherwise become the containing block
+          for this fixed panel and collapse it to the header's height */}
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 bottom-0 top-[68px] overflow-y-auto bg-forest-950 transition-all duration-500 xl:hidden ${
+        className={`fixed inset-0 z-40 overflow-y-auto bg-forest-950 pt-[68px] transition-all duration-500 xl:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
@@ -96,6 +99,6 @@ export default function Navbar() {
           ))}
         </nav>
       </div>
-    </header>
+    </>
   );
 }
