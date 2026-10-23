@@ -204,7 +204,7 @@ export default function Home() {
 
           <Reveal delay={150} className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] ring-1 ring-white/10">
-              <Image src="/images/farmer-crop-tablet.jpg" alt="Farmer inspecting ripening fruit in an orchard while recording data on a tablet" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              <Image src="/images/farmer-field-tablet.jpg" alt="Farmer inspecting crops in the field while checking data on a tablet" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
             <div className="absolute -bottom-6 left-6 right-6 flex items-center gap-4 rounded-2xl bg-white p-4 text-ink shadow-2xl sm:left-auto sm:w-80">
               <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-leaf-100 text-forest-700">
