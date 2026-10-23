@@ -25,7 +25,9 @@ Upload the **contents** of `out/` (not the folder itself) to `public_html/`:
 
 ## Contact form
 
-`public/contact.php` sends the form via PHP `mail()` to `info@greanfarm.eu`.
+The form (`components/ContactForm.tsx`) uses Formik + Yup for validation and posts to
+`public/contact.php`, which re-validates and sends it via PHP `mail()` to `info@greanfarm.eu`
+(change `$TO` to deliver to a different inbox).
 It only works on the server (not in `npm run dev`). The sender is `no-reply@greanfarm.eu` —
 create that mailbox (or change `$FROM`) in hPanel → Emails so messages aren't rejected.
 

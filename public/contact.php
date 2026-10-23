@@ -33,7 +33,8 @@ $email   = clean($_POST['email'] ?? '', 150);
 $company = clean($_POST['company'] ?? '', 150);
 $message = mb_substr(trim((string) ($_POST['message'] ?? '')), 0, 5000);
 
-if ($name === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// Same rules as the Formik/Yup schema in components/ContactForm.tsx
+if (mb_strlen($name) < 2 || mb_strlen($message) < 10 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(422, ['ok' => false, 'error' => 'Please fill in all required fields.']);
 }
 
@@ -41,14 +42,17 @@ $subject = '=?UTF-8?B?' . base64_encode("New enquiry from $name — greanfarm.eu
 $body  = "Name: $name\n";
 $body .= "Email: $email\n";
 $body .= "Farm / company: " . ($company !== '' ? $company : '-') . "\n\n";
-$body .= "Message:\n$message\n";
+$body .= "Message:\n$message\n\n";
+$body .= "---\nSent from the contact form on greanfarm.eu at " . gmdate('Y-m-d H:i') . " UTC\n";
 
 $headers  = "From: Grean Website <$FROM>\r\n";
-$headers .= "Reply-To: $email\r\n";
+$headers .= "Reply-To: $name <$email>\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
-if (@mail($TO, $subject, $body, $headers)) {
+// -f sets the envelope sender to our own domain, which keeps Hostinger mail out of spam
+if (@mail($TO, $subject, $body, $headers, '-f' . $FROM)) {
     respond(200, ['ok' => true]);
 }
 respond(500, ['ok' => false, 'error' => 'Mail could not be sent.']);
