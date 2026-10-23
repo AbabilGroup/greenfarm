@@ -14,7 +14,7 @@ export default function AboutUs() {
     <>
       <Seo
         title="About Us — Independent Agricultural Partner"
-        description="Grean is an independent agricultural partner based in France. We don't sell fertilizers, lime or chemicals — our advice is rooted in precise, scientifically gathered soil data."
+        description="Grean is an independent agricultural partner based in Croatia. We don't sell fertilizers, lime or chemicals — our advice is rooted in precise, scientifically gathered soil data."
         path="/about-us/"
         image="/images/france-fields.jpg"
         breadcrumbs={[{ name: "About Us", path: "/about-us/" }]}
@@ -24,7 +24,7 @@ export default function AboutUs() {
         title="Completely independent. Entirely on the farmer's side."
         intro="We don't sell fertilizers, lime, or chemicals. It's not part of our business model, and it never will be."
         image="/images/france-fields.jpg"
-        alt="Green fields stretching under a blue sky in northern France"
+        alt="Green fields stretching under a blue sky"
       />
 
       <section className="container-x grid items-center gap-14 py-24 sm:py-32 lg:grid-cols-2">

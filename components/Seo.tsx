@@ -23,7 +23,7 @@ const organizationLd = {
     "@type": "ContactPoint",
     email: site.email,
     contactType: "customer support",
-    availableLanguage: ["English", "French"],
+    availableLanguage: ["English"],
   },
 };
 

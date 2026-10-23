@@ -38,7 +38,7 @@ export default function Contact() {
     <>
       <Seo
         title="Contact Us"
-        description={`Get in touch with Grean for independent soil analysis and precision agriculture advice. Email ${site.email} or visit us in ${site.address.city}, France.`}
+        description={`Get in touch with Grean for independent soil analysis and precision agriculture advice. Email ${site.email} or visit us in ${site.address.city}, ${site.address.country}.`}
         path="/contact/"
         image="/images/wheat-forest.jpg"
         breadcrumbs={[{ name: "Contact", path: "/contact/" }]}
@@ -150,8 +150,8 @@ export default function Contact() {
       <section className="container-x py-20">
         <Reveal className="overflow-hidden rounded-[2rem] ring-1 ring-forest-900/10">
           <iframe
-            title={`Map showing Grean at ${site.address.city}, France`}
-            src={`https://www.google.com/maps?q=${encodeURIComponent(`${site.address.street}, ${site.address.postalCode} ${site.address.city}, France`)}&output=embed`}
+            title={`Map showing Grean at ${site.address.city}, ${site.address.country}`}
+            src={`https://www.google.com/maps?q=${encodeURIComponent(`${site.address.street}, ${site.address.postalCode} ${site.address.city}, ${site.address.country}`)}&output=embed`}
             className="h-[420px] w-full grayscale-[30%]"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
