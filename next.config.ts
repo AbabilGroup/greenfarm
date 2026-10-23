@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   // Static HTML export -> `out/` folder, ready to upload to Hostinger cPanel (public_html)
   output: "export",
   // Every route becomes /route/index.html so Apache serves it without rewrites

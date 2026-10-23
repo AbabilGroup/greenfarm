@@ -5,8 +5,8 @@ const SITE_URL = "https://www.greanfarm.eu";
 const priorities = { "/": "1.0", "/our-solutions/": "0.9", "/our-product/": "0.9", "/contact/": "0.8" };
 
 const routes = readdirSync(new URL("../pages", import.meta.url))
-  .filter((f) => f.endsWith(".js") && !f.startsWith("_") && f !== "404.js")
-  .map((f) => (f === "index.js" ? "/" : `/${f.replace(/\.js$/, "")}/`))
+  .filter((f) => /\.tsx?$/.test(f) && !f.startsWith("_") && !f.startsWith("404."))
+  .map((f) => (f.startsWith("index.") ? "/" : `/${f.replace(/\.tsx?$/, "")}/`))
   .sort((a, b) => (a === "/" ? -1 : b === "/" ? 1 : a.localeCompare(b)));
 
 const today = new Date().toISOString().slice(0, 10);

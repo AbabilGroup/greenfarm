@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { ArrowUpRight, CheckCircle2, Loader2, Mail, MapPin } from "lucide-react";
 import Seo from "@/components/Seo";
@@ -8,17 +8,24 @@ import { site } from "@/lib/site";
 const field =
   "w-full rounded-2xl border border-forest-900/10 bg-white px-5 py-4 text-ink placeholder:text-ink/40 transition focus:border-leaf-400 focus:outline-none focus:ring-4 focus:ring-leaf-400/20";
 
-export default function Contact() {
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+type Status = "idle" | "sending" | "sent" | "error";
 
-  async function onSubmit(e) {
+interface ContactResponse {
+  ok?: boolean;
+  error?: string;
+}
+
+export default function Contact() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus("sending");
     try {
       // contact.php lives in public/ and is served by Hostinger's PHP
       const res = await fetch("/contact.php", { method: "POST", body: new FormData(form) });
-      const data = await res.json().catch(() => ({}));
+      const data: ContactResponse = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) throw new Error(data.error || "Failed");
       form.reset();
       setStatus("sent");

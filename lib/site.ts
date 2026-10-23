@@ -1,3 +1,37 @@
+import type { IconName } from "@/components/Icon";
+
+export interface NavItem {
+  label: string;
+  href: string;
+}
+
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export interface Solution {
+  slug: string;
+  title: string;
+  short: string;
+  text: string;
+  image: string;
+  alt: string;
+  icon: IconName;
+}
+
+export interface TimelineEntry {
+  year: string;
+  title: string;
+  text: string;
+}
+
+export interface IconCard {
+  title: string;
+  text: string;
+  icon: IconName;
+}
+
 export const site = {
   name: "Grean",
   legalName: "Grean",
@@ -17,9 +51,9 @@ export const site = {
   ogImage: "/images/og-image.jpg",
   founded: "2014",
   locale: "en_GB",
-};
+} as const;
 
-export const nav = [
+export const nav: NavItem[] = [
   { label: "Why Grean", href: "/why-grean/" },
   { label: "Our Journey", href: "/our-journey/" },
   { label: "Our Product", href: "/our-product/" },
@@ -29,14 +63,14 @@ export const nav = [
   { label: "Workshop", href: "/the-workshop/" },
 ];
 
-export const stats = [
+export const stats: Stat[] = [
   { value: "2014", label: "Founded" },
   { value: "11+", label: "Years building software" },
   { value: "0", label: "Chemicals sold — ever" },
   { value: "100%", label: "Independent advice" },
 ];
 
-export const solutions = [
+export const solutions: Solution[] = [
   {
     slug: "soil-nutrient-mapping",
     title: "High-Precision Soil Nutrient Mapping",
@@ -84,7 +118,7 @@ export const solutions = [
   },
 ];
 
-export const timeline = [
+export const timeline: TimelineEntry[] = [
   {
     year: "2014",
     title: "Grean is founded",
@@ -107,7 +141,7 @@ export const timeline = [
   },
 ];
 
-export const principles = [
+export const principles: IconCard[] = [
   {
     title: "We don't sell inputs",
     text: "We don't sell fertilizers, lime, or chemicals. It's not part of our business model, and it never will be.",
@@ -135,7 +169,7 @@ export const principles = [
   },
 ];
 
-export const values = [
+export const values: IconCard[] = [
   {
     title: "Integrity",
     text: "Honest, impartial advice — with no product to push and nothing to hide.",

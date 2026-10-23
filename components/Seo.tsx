@@ -27,16 +27,31 @@ const organizationLd = {
   },
 };
 
+interface Breadcrumb {
+  name: string;
+  path: string;
+}
+
+interface SeoProps {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  breadcrumbs?: Breadcrumb[];
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
 /**
  * Per-page SEO: title, description, canonical, Open Graph, Twitter card and JSON-LD.
  * `path` is the route with trailing slash ("/" for home), matching next.config trailingSlash.
  */
-export default function Seo({ title, description = site.description, path = "/", image = site.ogImage, breadcrumbs, jsonLd = [], noindex = false }) {
+export default function Seo({ title, description = site.description, path = "/", image = site.ogImage, breadcrumbs, jsonLd = [], noindex = false }: SeoProps) {
   const fullTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.tagline} | Independent Soil Science for Farmers`;
   const url = `${site.url}${path}`;
   const imageUrl = image.startsWith("http") ? image : `${site.url}${image}`;
 
-  const schemas = [organizationLd, ...jsonLd];
+  const schemas: Record<string, unknown>[] = [organizationLd, ...jsonLd];
   if (breadcrumbs?.length) {
     schemas.push({
       "@context": "https://schema.org",

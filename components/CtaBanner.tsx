@@ -4,10 +4,15 @@ import { ArrowUpRight, Mail } from "lucide-react";
 import Reveal from "./Reveal";
 import { site } from "@/lib/site";
 
+interface CtaBannerProps {
+  title?: string;
+  text?: string;
+}
+
 export default function CtaBanner({
   title = "Let's understand your soil — together.",
   text = "Tell us about your land and your goals. We'll show you what the data says, with no product to sell and no strings attached.",
-}) {
+}: CtaBannerProps) {
   return (
     <section className="container-x pb-20 sm:pb-28">
       <Reveal className="relative isolate overflow-hidden rounded-[2rem] bg-forest-900 px-6 py-16 sm:px-14 sm:py-20">

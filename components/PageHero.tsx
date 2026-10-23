@@ -2,8 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
+interface PageHeroProps {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  image: string;
+  alt: string;
+}
+
 // Banner used at the top of every inner page
-export default function PageHero({ eyebrow, title, intro, image, alt }) {
+export default function PageHero({ eyebrow, title, intro, image, alt }: PageHeroProps) {
   return (
     <section className="relative isolate flex min-h-[72vh] items-end overflow-hidden bg-forest-950 pb-16 pt-40 sm:pb-20">
       <Image src={image} alt={alt} fill priority sizes="100vw" className="-z-20 object-cover opacity-70" />

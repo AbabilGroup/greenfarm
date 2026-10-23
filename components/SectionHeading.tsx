@@ -1,6 +1,15 @@
 import Reveal from "./Reveal";
 
-export default function SectionHeading({ eyebrow, title, intro, align = "left", dark = false, className = "" }) {
+interface SectionHeadingProps {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  align?: "left" | "center";
+  dark?: boolean;
+  className?: string;
+}
+
+export default function SectionHeading({ eyebrow, title, intro, align = "left", dark = false, className = "" }: SectionHeadingProps) {
   const center = align === "center";
   return (
     <Reveal className={`${center ? "mx-auto text-center" : ""} max-w-3xl ${className}`}>

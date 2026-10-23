@@ -28,7 +28,7 @@ export default function Navbar() {
   }, [open]);
 
   const solid = scrolled || open;
-  const isActive = (href) => router.asPath.startsWith(href);
+  const isActive = (href: string) => router.asPath.startsWith(href);
 
   return (
     <header

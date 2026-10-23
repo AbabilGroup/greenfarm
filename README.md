@@ -1,12 +1,13 @@
 # Grean — greanfarm.eu
 
-Next.js 16 (Pages Router) + Tailwind CSS 4, exported as a fully static site for Hostinger cPanel.
+Next.js 16 (Pages Router) + TypeScript + Tailwind CSS 4, exported as a fully static site for Hostinger cPanel.
 
 ## Develop
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
+npm run typecheck  # strict TypeScript check
 ```
 
 ## Build for Hostinger
@@ -30,9 +31,9 @@ create that mailbox (or change `$FROM`) in hPanel → Emails so messages aren't 
 
 ## Editing content
 
-- Text, solutions, timeline, principles, values, contact details: `lib/site.js`
-- Pages: `pages/*.js` — each page sets its own title/description via `<Seo />`
-- New page? Add `pages/name.js`; it is added to the sitemap automatically on build.
+- Text, solutions, timeline, principles, values, contact details: `lib/site.ts`
+- Pages: `pages/*.tsx` — each page sets its own title/description via `<Seo />`
+- New page? Add `pages/name.tsx`; it is added to the sitemap automatically on build.
 
 ## SEO included
 

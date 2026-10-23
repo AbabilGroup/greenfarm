@@ -1,8 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ElementType, type HTMLAttributes } from "react";
+
+interface RevealProps extends HTMLAttributes<HTMLElement> {
+  as?: ElementType;
+  delay?: number;
+}
 
 // Fades children in when they scroll into view. Content stays visible without JS (see _document noscript).
-export default function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest }) {
-  const ref = useRef(null);
+export default function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest }: RevealProps) {
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
