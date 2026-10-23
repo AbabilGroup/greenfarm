@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* `inline` so the next/font variables (set on the _app wrapper, not :root) resolve where they're used */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+@theme {
+
+  /* Grean palette – derived from the leaf logo */
+  --color-forest-950: #06231a;
+  --color-forest-900: #0b3226;
+  --color-forest-800: #114634;
+  --color-forest-700: #185c43;
+  --color-forest-600: #217553;
+  --color-leaf-500: #6fae3c;
+  --color-leaf-400: #8cc44f;
+  --color-leaf-300: #a9d46b;
+  --color-leaf-100: #e7f3d6;
+  --color-cream-50: #fbfaf5;
+  --color-cream-100: #f4f1e6;
+  --color-cream-200: #e9e4d2;
+  --color-earth-500: #a0754a;
+  --color-ink: #13201a;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-cream-50 text-ink font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-leaf-300 text-forest-950;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+}
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-leaf-500;
+  &::before {
+    content: "";
+    @apply h-px w-8 bg-current;
+  }
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-400;
+}
+@utility btn-primary {
+  @apply btn bg-leaf-400 text-forest-950 shadow-lg shadow-leaf-500/20 hover:-translate-y-0.5 hover:bg-leaf-300;
+}
+@utility btn-dark {
+  @apply btn bg-forest-900 text-cream-50 hover:-translate-y-0.5 hover:bg-forest-700;
+}
+@utility btn-ghost {
+  @apply btn border border-white/30 text-white backdrop-blur-sm hover:bg-white/10;
+}
+@utility card {
+  @apply rounded-3xl bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(11,50,38,0.12)] ring-1 ring-forest-900/5;
+}
+@utility prose-grean {
+  & p {
+    @apply text-lg leading-relaxed text-ink/75;
+  }
+  & p + p {
+    @apply mt-5;
+  }
+}
+
+/* Scroll reveal (toggled by components/Reveal.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
